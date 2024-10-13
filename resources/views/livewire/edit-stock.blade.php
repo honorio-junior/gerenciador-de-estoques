@@ -116,7 +116,7 @@
    </div>
 
    <div class="row p-3" x-data="{exibir : false}">
-      <button wire:click="exibir_produtos()" type="button" class="btn btn-secondary mb-3 col-2 mx-auto" @click="exibir = !exibir">Mostrar produtos</button>
+      <button wire:click="exibir_produtos()" type="button" class="btn btn-secondary mb-3 col-3 mx-auto" @click="exibir = !exibir">Mostrar produtos</button>
       <table class="table table-striped align-middle text-center" x-show="exibir">
          <thead>
             <tr>
