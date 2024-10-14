@@ -10,8 +10,8 @@
 
 <body data-bs-theme="dark">
     <nav class="navbar bg-body-tertiary">
-        <div class="container justify-content-center">
-            <a class="navbar-brand" href="{{ route('home') }}">Gerenciador de estoques</a>
+        <div class="container justify-content-center mt-2">
+            <h2>Gerenciador de estoques</h2>
         </div>
     </nav>
     {{ $slot }}

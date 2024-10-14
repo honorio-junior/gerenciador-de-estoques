@@ -1,5 +1,4 @@
 <div class="container-sm mt-4">
-   <p class="text-center fs-1">Editar estoques</p>
    <div class="row mb-3">
 
       <div class="col-12">
@@ -108,7 +107,7 @@
                @enderror
             </div>
 
-            <button type="submit" class="btn btn-primary col-12" x-show="!openNewCategory && !openNewProduct">Cadastrar produto</button>
+            <button type="submit" class="btn btn-primary col-12" x-show="!openNewCategory && !openNewProduct">Cadastrar</button>
 
          </form>
       </div>
@@ -116,14 +115,11 @@
    </div>
 
    <div class="row p-3" x-data="{exibir : false}">
-      <button wire:click="exibir_produtos()" type="button" class="btn btn-secondary mb-3 col-3 mx-auto" @click="exibir = !exibir">Mostrar produtos</button>
+      <button wire:click="exibir_produtos()" type="button" class="btn btn-secondary mb-3 col-3 mx-auto" @click="exibir = !exibir">Prévia</button>
       <table class="table table-striped align-middle text-center" x-show="exibir">
          <thead>
             <tr>
-               <th class="border">Nome</th>
-               <th class="border">Cat.</th>
-               <th class="border">Uni</th>
-               <th class="border">R$</th>
+               <th class="border">Produto</th>
                <th class="border">Ação</th>
             </tr>
          </thead>
@@ -131,16 +127,13 @@
             @if (count($produtos) > 0)
             @foreach($produtos as $produto)
             <tr>
-               <td class="border">{{ $produto->name }}</td>
-               <td class="border">{{ $produto->category->name }}</td>
-               <td class="border">{{ $produto->amount }}</td>
-               <td class="border">{{ number_format($produto->price, 2, ',', '.') }}</td>
+               <td class="border">{{ $produto->name }} <br> R${{ $produto->price }} <br> uni {{ $produto->amount }} <br> {{ $produto->category->name }}</td>
                <td class="border-end border-start"><button wire:click="excluir_produto({{ $produto->id }})" wire:confirm="Deletar produto? ({{$produto->name}})" type="button" class="btn btn-danger btn-sm">Excluir</button></td>
             </tr>
             @endforeach
             @else
             <tr>
-               <td class="border" colspan="5">Nenhum produto encontrado</td>
+               <td class="border" colspan="2">Nenhum produto encontrado</td>
             </tr>
             @endif
          </tbody>

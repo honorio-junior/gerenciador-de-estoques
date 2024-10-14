@@ -22,7 +22,7 @@ class EditStock extends Component
         ]);
         $stock = Stock::create(['creation_date' => $this->data_estoque]);
         $this->produto['stock_id'] = $stock->id;
-        
+        $this->dispatch('atualizarLista');
     }
 
     public function criar_categoria()
@@ -33,7 +33,7 @@ class EditStock extends Component
         ]);
         $category = Category::create(['name' => $this->nome_categoria]);
         $this->produto['category_id'] = $category->id;
-        
+        $this->dispatch('atualizarLista');
     }
 
     public function criar_produto()
@@ -53,6 +53,7 @@ class EditStock extends Component
         $this->produto['name'] = '';
         $this->produto['amount'] = '';
         $this->produto['price'] = '';
+        $this->dispatch('atualizarLista');
     }
 
     public function excluir_produto($id)
@@ -63,9 +64,9 @@ class EditStock extends Component
             $this->produto['name'] = '';
             $this->produto['amount'] = '';
             $this->produto['price'] = '';
+            $this->dispatch('atualizarLista');
         }
     }
-
     public function excluir_categoria($categoryId)
     {
         $produtos = Product::where('category_id', $categoryId)->get();
@@ -78,6 +79,7 @@ class EditStock extends Component
         if ($category) {
             $category->delete();
             $this->produto['category_id'] = '';
+            $this->dispatch('resetCategoriaId');
             return;
         }
     }
@@ -94,6 +96,7 @@ class EditStock extends Component
         if ($stock) {
             $stock->delete();
             $this->produto['stock_id'] = '';
+            $this->dispatch('resetEstoqueId');
             return;
         }
     }

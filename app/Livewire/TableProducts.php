@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\Stock;
 use App\Models\Category;
+use Livewire\Attributes\On; 
 
 class TableProducts extends Component
 {
@@ -52,6 +53,7 @@ class TableProducts extends Component
         }
     }
 
+    #[On('atualizarLista')]
     public function carregarProdutos()
     {
         if($this->categoria_id == 0){
@@ -64,6 +66,21 @@ class TableProducts extends Component
             ->orderBy('price')
             ->get();
         }
+    }
+
+    #[On('resetEstoqueId')]
+    public function resetEstoqueId()
+    {
+        $this->estoque_id = 0;
+        $this->categoria_id = 0;
+        $this->carregarProdutos();
+    }
+
+    #[On('resetCategoriaId')]
+    public function resetCategoriaId()
+    {
+        $this->categoria_id = 0;
+        $this->carregarProdutos();
     }
 
     public function render()
